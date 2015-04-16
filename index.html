@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>FORMATS</title>
+	<script type="text/javascript" src="format.js"></script>
+</head>
+<body>
+	<form action="#">
+		<label for="numerique">Valeur numérique</label>
+		<input type="text" id="numerique" value="" />
+		<br />
+		<label for="majuscule">Valeur majuscule</label>
+		<input type="text" id="majuscule" value="" />
+		<br />
+		<label for="majusculeBlancCote">Valeur majuscule sans blanc ni cote</label>
+		<input type="text" id="majusculeBlancCote" value="" />
+		<br />
+		<label for="majusculeBlanc">Valeur majuscule sans blanc</label>
+		<input type="text" id="majusculeBlanc" value="" />
+		<br />
+		<label for="majusculeCote">Valeur majuscule sans cote</label>
+		<input type="text" id="majusculeCote" value="" />
+		<br />
+		<label for="date">Date</label>
+		<input type="text" id="date" value="" />
+		<br />
+		<label for="heure">Heure</label>
+		<input type="text" id="heure" value="" />
+	</form>
+
+	<script type="text/javascript" defer="defer">
+		document.getElementById("numerique").onkeypress = function() { ctrlNumerique(this, 3, 10); };
+		document.getElementById("numerique").onpaste = function() { ctrlNumerique(this, 3, 10); };
+
+		document.getElementById("majuscule").onkeypress = function(e) { conversionMajuscule(e); };
+		document.getElementById("majuscule").onpaste = function(e) { conversionMajuscule(e); };
+
+		document.getElementById("majusculeBlancCote").onkeypress = function(e) { majusculeSansBlancSansCote(e); };
+		document.getElementById("majusculeBlancCote").onpaste = function(e) { majusculeSansBlancSansCote(e); };
+
+		document.getElementById("majusculeBlanc").onkeypress = function(e) { majusculeSansBlanc(e); };
+		document.getElementById("majusculeBlanc").onpaste = function(e) { majusculeSansBlanc(e); };
+
+		document.getElementById("majusculeCote").onkeypress = function(e) { majusculeSansCote(e); };
+		document.getElementById("majusculeCote").onpaste = function(e) { majusculeSansCote(e); };
+
+		document.getElementById("date").onkeypress = function(e) { ctrlSaisieDate(this.id); };
+		document.getElementById("date").onpaste = function(e) { ctrlSaisieDate(this.id); };
+
+		document.getElementById("heure").onkeypress = function(e) { ctrlSaisieHeure(e, this); };
+		document.getElementById("heure").onpaste = function(e) { ctrlSaisieHeure(e, this); };
+	</script>
+</body>
+</html>
