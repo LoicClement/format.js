@@ -9,6 +9,9 @@
 		<label for="numerique">Valeur numérique</label>
 		<input type="text" id="numerique" value="" />
 		<br />
+		<label for="chiffre">Valeur numérique sans décimal</label>
+		<input type="text" id="chiffre" value="" />
+		<br />
 		<label for="majuscule">Valeur majuscule</label>
 		<input type="text" id="majuscule" value="" />
 		<br />
@@ -31,6 +34,9 @@
 	<script type="text/javascript" defer="defer">
 		document.getElementById("numerique").onkeypress = function(e) { ctrlSaisieNumerique(e, 3, 10); };
 		document.getElementById("numerique").onpaste = function(e) { ctrlSaisieNumerique(e, 3, 10); };
+		
+		document.getElementById("chiffre").onkeypress = function(e) { ctrlSaisieNumerique(e, 2); };
+		document.getElementById("chiffre").onpaste = function(e) { ctrlSaisieNumerique(e, 2); };
 
 		document.getElementById("majuscule").onkeypress = function(e) { conversionMajuscule(e); };
 		document.getElementById("majuscule").onpaste = function(e) { conversionMajuscule(e); };

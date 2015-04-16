@@ -160,7 +160,9 @@ function ctrlNumerique(zone, nbDecimal, maxLength)
 function ctrlSaisieNumerique(e, nbDecimal, maxLength)
 {
 	var evt = e || window.event;
-
+	maxLength = maxLength || 0;	// valeur par défaut de maxLength (0 = illimité)
+	nbDecimal = nbDecimal || 0;	// valeur par défaut de nbDecimal (0 = aucune décimale)
+	
 	if (evt && evt.target)   // IE >= 9, Chrome
 	{
 		var valueRegex = new RegExp("^(|\-?[0-9]*"+(nbDecimal > 0 ? "(|,[0-9]{0,"+nbDecimal+"})" : "")+")$");
@@ -175,7 +177,7 @@ function ctrlSaisieNumerique(e, nbDecimal, maxLength)
 
 			var valueUpdate = evt.target.value.substr(0, sStart) + charStr + evt.target.value.substr(sEnd);
 
-			if (valueUpdate.length > maxLength || !valueUpdate.match(valueRegex))
+			if ((maxLength > 0 && valueUpdate.length > maxLength) || !valueUpdate.match(valueRegex))
 			{
 				evt.preventDefault();
 				return;
@@ -202,7 +204,7 @@ function ctrlSaisieNumerique(e, nbDecimal, maxLength)
 				var valueUpdate = evt.target.value.substr(0, sStart) + data + evt.target.value.substr(sEnd);
 
 				// Contrôle de la validité de la chaîne à mettre à jour dans le contrôle
-				if (valueUpdate.length > maxLength || !valueUpdate.match(valueRegex))
+				if ((maxLength > 0 && valueUpdate.length > maxLength) || !valueUpdate.match(valueRegex))
 				{
 					evt.preventDefault();
 					return;
@@ -221,7 +223,7 @@ function ctrlSaisieNumerique(e, nbDecimal, maxLength)
 	    var jj=evt.keyCode;
 	    var zone = evt.srcElement;
 	    var valeur = zone.value; // valeur de la zone de saisie
-	    if (valeur.length==maxLength)
+	    if (maxLength > 0 && valeur.length >= maxLength)
 	    { // controle longueur de la zone saisie
 	        evt.keyCode=0; return;
 	    }
