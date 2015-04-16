@@ -107,28 +107,12 @@ function conversionMajuscule(e)
 
 /**
  * Blocage à la saisie des caractères non numériques
- * Note : événement à attacher à une zone de texte (élément input DOM elt) de la façon suivante :
- *  - elt.onkeypress = chiffres;
- *  @param e Evénement
+ * (déprécié)
  */
 function chiffres(e)
 {
 	var evt = e || window.event;
-
-	// Inhibe les toutes les touches sauf 0123456789
-	if (evt.keyCode < 48 || evt.keyCode > 58)
-	{
-		if (evt.stopPropagation)   // IE >= 9, Chrome, Firefox
-		{
-			evt.stopPropagation();
-			evt.preventDefault();
-		}
-		else   // IE < 9 (obsolète)
-		{
-			evt.cancelBubble = true;
-			evt.returnValue = false;
-		}
-	}
+	ctrlSaisieNumerique(evt);
 }
 
 

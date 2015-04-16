@@ -35,8 +35,8 @@
 		document.getElementById("numerique").onkeypress = function(e) { ctrlSaisieNumerique(e, 3, 10); };
 		document.getElementById("numerique").onpaste = function(e) { ctrlSaisieNumerique(e, 3, 10); };
 		
-		document.getElementById("chiffre").onkeypress = function(e) { ctrlSaisieNumerique(e, 2); };
-		document.getElementById("chiffre").onpaste = function(e) { ctrlSaisieNumerique(e, 2); };
+		document.getElementById("chiffre").onkeypress = function(e) { chiffres(e); };
+		document.getElementById("chiffre").onpaste = function(e) { chiffres(e); };
 
 		document.getElementById("majuscule").onkeypress = function(e) { conversionMajuscule(e); };
 		document.getElementById("majuscule").onpaste = function(e) { conversionMajuscule(e); };
