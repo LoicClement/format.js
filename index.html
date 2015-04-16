@@ -29,8 +29,8 @@
 	</form>
 
 	<script type="text/javascript" defer="defer">
-		document.getElementById("numerique").onkeypress = function() { ctrlNumerique(this, 3, 10); };
-		document.getElementById("numerique").onpaste = function() { ctrlNumerique(this, 3, 10); };
+		document.getElementById("numerique").onkeypress = function(e) { ctrlSaisieNumerique(e, 3, 10); };
+		document.getElementById("numerique").onpaste = function(e) { ctrlSaisieNumerique(e, 3, 10); };
 
 		document.getElementById("majuscule").onkeypress = function(e) { conversionMajuscule(e); };
 		document.getElementById("majuscule").onpaste = function(e) { conversionMajuscule(e); };

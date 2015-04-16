@@ -134,16 +134,32 @@ function chiffres(e)
 
 /**
  * Conversion et contrôle à la saisie des caractères en nombre décimal
- * Méthode événementielle :
- *  - elt.onkeypress = ctrlNumerique(this, nbDecimal, maxLength);
- *  - elt.onpaste = ctrlNumerique(this, nbDecimal, maxLength);
- *  @param zone Elément DOM zone de texte
- *  @param nbDecimal Nombre de décimales
- *  @param maxLength Longueur maximale de la zone
+ * (déprécié car nom compatible Firefox)
  */
 function ctrlNumerique(zone, nbDecimal, maxLength)
 {
 	var evt = window.event ? window.event : null;   // Non compatible Firefox
+
+	if (evt)   // IE8, IE9+, Chrome
+	{
+		ctrlSaisieNumerique(evt, nbDecimal, maxLength);
+	}
+}
+
+
+
+/**
+ * Conversion et contrôle à la saisie des caractères en nombre décimal (keypress et paste)
+ * Méthode événementielle :
+ *  - elt.onkeypress = function(e) { ctrlNumerique(e, nbDecimal, maxLength);
+ *  - elt.onpaste = function(e) { ctrlNumerique(e, nbDecimal, maxLength);
+ *  @param e Evénement
+ *  @param nbDecimal Nombre de décimales
+ *  @param maxLength Longueur maximale de la zone
+ */
+function ctrlSaisieNumerique(e, nbDecimal, maxLength)
+{
+	var evt = e || window.event;
 
 	if (evt && evt.target)   // IE >= 9, Chrome
 	{
@@ -200,9 +216,10 @@ function ctrlNumerique(zone, nbDecimal, maxLength)
 			}
 		}
 	}
-	else if (evt)   // IE < 9 (obsolète)
+	else if (evt && evt.srcElement)   // IE < 9 (obsolète)
 	{
 	    var jj=evt.keyCode;
+	    var zone = evt.srcElement;
 	    var valeur = zone.value; // valeur de la zone de saisie
 	    if (valeur.length==maxLength)
 	    { // controle longueur de la zone saisie
@@ -284,10 +301,11 @@ function ctrlNumerique(zone, nbDecimal, maxLength)
 	            evt.keyCode=0;
 	            return;
 	        }
-	        return ;
+	        return;
 	    }
 	    evt.keyCode=0;
 	}
+	
 }
 
 
